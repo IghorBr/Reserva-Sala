@@ -5,9 +5,7 @@
 
     <link href='./styles/main.css' rel='stylesheet' />
     <link href='./styles/estilo.css' rel='stylesheet' />
-    <script src='./scripts/main.js'></script>
-    <script src='./scripts/calendar.js'></script>
-    <script src='./scripts/database.js'></script>
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    
     <title>Calendario Usuario</title>
@@ -99,10 +97,7 @@
 </style>
 </head>
 <body>
-    <figure id='settings' class=sticky-left>
-        <img src='./images/gear.svg'>
-    </figure>
-
+    
     <div id='calendar'></div>
 
     <!-- Modal para cadastrar novo Evento -->
@@ -142,16 +137,18 @@
                                 <label for='sala-solicitada'>Sala Solicitada</label>
                                 <select id='create-sala-solicitada' class='form-control' required>
                                     <option val=''></option>
-                                    <option val='SALA 1'>SALA 1</option>
-                                    <option val='SALA 2'>SALA 2</option>
-                                    <option val='SALA 3'>SALA 3</option>
+                                    <option val='Inconfidência (3º andar)'>Inconfidência (3º andar)</option>
+                                    <option val='Ouro Preto (3º andar)'>Ouro Preto (3º andar)</option>
+                                    <option val='Tiradentes (3º andar)'>Tiradentes (3º andar)</option>
+                                    <option val='Vila Rica (3º andar)'>Vila Rica (3º andar)</option>
+                                    <option val='Sala da Diretoria (9º andar)'>Sala da Diretoria (9º andar)</option>
                                 </select>
                             </div>
 
-                            <!-- <div class='form-group'>
-                                <label for='solicitante-sala'>Solicitante da Sala</label>
-                                <p id='create-solicitante' class=lead></p>
-                            </div> -->
+                            <div class='form-group'>
+                                <label for='qtd-pessoas-sala'>Quantidade de pessoas</label>
+                                <input type='number' id='create-qtd-pessoas' class=form-control required></input>
+                            </div>
                         </div>
                         
                         <div id='create-content-right' class='column'>
@@ -181,14 +178,14 @@
                                 <input id='create-hora-fim' class='form-control' type='time' required>
                             </div>
         
-                            <div class='form-group'>
+                            <!-- <div class='form-group'>
                                 <label for='resposavel-sala'>Responsável pela Sala</label>
                                 <select id='create-responsavel-sala' class='form-control' required>
                                     <option val='0'>&nbsp;</option>
                                     <option val='1'>Responsavel 1</option>
                                     <option val='2'>Responsavel 2</option>
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
                     </form>
                 </div>
@@ -236,11 +233,11 @@
 
                         <b>Hora Fim Evento:<p id='show-hora-fim' class='lead'></p></b>
 
-                        <b></b>Coffee Break:<p id='show-coffee-break' class='lead'></p></b>
+                        <b>Quantidade de Pessoas: <p id='show-qtd-pessoas' class='lead'></p></b>
+
+                        <b>Coffee Break:<p id='show-coffee-break' class='lead'></p></b>
                         
                         <b>Vídeo Conferência:<p id='show-video-conferencia' class='lead'></p></b>
-                        
-                        <b>Responsável pela Sala:<p id='show-responsavel-sala' class='lead'></p></b>
                     </div>
                 </div>
 
@@ -283,11 +280,13 @@
         
                             <div class=form-group>
                                 <label for='sala-solicitada'>Sala Solicitada</label>
-                                <select id='update-sala-solicitada' class='form-control' required>
-                                    <option val='0'>&nbsp</option>
-                                    <option val='SALA 1'>SALA 1</option>
-                                    <option val='SALA 2'>SALA 2</option>
-                                    <option val='SALA 3'>SALA 3</option>
+                                <select id='create-sala-solicitada' class='form-control' required>
+                                    <option val=''></option>
+                                    <option val='Inconfidência (3º andar)'>Inconfidência (3º andar)</option>
+                                    <option val='Ouro Preto (3º andar)'>Ouro Preto (3º andar)</option>
+                                    <option val='Tiradentes (3º andar)'>Tiradentes (3º andar)</option>
+                                    <option val='Vila Rica (3º andar)'>Vila Rica (3º andar)</option>
+                                    <option val='Sala da Diretoria (9º andar)'>Sala da Diretoria (9º andar)</option>
                                 </select>
                             </div>
                         </div>
@@ -319,14 +318,6 @@
                                 <input id='update-hora-fim' class='form-control' type='time' required>
                             </div>
         
-                            <div class='form-group'>
-                                <label for='resposavel-sala'>Responsável pela Sala</label>
-                                <select id='update-responsavel-sala' class='form-control' required>
-                                    <option val='0'>&nbsp;</option>
-                                    <option val='1'>Responsavel 1</option>
-                                    <option val='2'>Responsavel 2</option>
-                                </select>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -371,6 +362,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="./scripts/changeLanguage.js"></script>
-
+    <script src='./scripts/main.js'></script>
+    <script src='./scripts/calendar.js'></script>
+    <script src='./scripts/database.js'></script>
 </body>
 </html>

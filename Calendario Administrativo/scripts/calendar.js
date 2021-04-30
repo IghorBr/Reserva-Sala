@@ -7,7 +7,6 @@ function createEvent(calendar, date) {
     let isCoffeeBreak       = $("#create-cofee-break").val();
     let horaInicio          = $("#create-hora-inicio").val();
     let horaFim             = $("#create-hora-fim").val();
-    let responsavel         = $("#create-responsavel-sala").val();
 
     let dateStart = new Date(dataEvento + "T" + horaInicio);
     let usuarioLogado = getUsuario();
@@ -37,7 +36,6 @@ function createEvent(calendar, date) {
             salaSolicitada: salaSolicitada,
             videoConferencia: isVideoConferencia,
             coffeeBreak: isCoffeeBreak,
-            responsavelSala: responsavel,
             horaInicio: horaInicio,
             horaFim: horaFim,
             dataEvento: dataEvento,
@@ -64,10 +62,10 @@ function showEvent(arg) {
     var tempoEstimado       = document.getElementById('show-tempo-estimado');
     var coffeeBreak         = document.getElementById('show-coffee-break');
     var videoConferencia    = document.getElementById('show-video-conferencia');
-    var responsavelSala     = document.getElementById('show-responsavel-sala');
     var dataCriacaoEvento   = document.getElementById('show-data-criacao');
     var cargo               = document.getElementById('show-cargo-solicitante');
     var area                = document.getElementById('show-area-solicitante');
+    var usuarioLogado       = getUsuario();
 
     var divSituacao = document.getElementById('situacao-color');
     
@@ -81,7 +79,6 @@ function showEvent(arg) {
     tempoEstimado.innerText     = event.extendedProps.tempoEstimado != undefined ? event.extendedProps.tempoEstimado : "";
     coffeeBreak.innerText       = event.extendedProps.coffeeBreak != undefined ? event.extendedProps.coffeeBreak : "";
     videoConferencia.innerText  = event.extendedProps.videoConferencia != undefined ? event.extendedProps.videoConferencia : "";
-    responsavelSala.innerText   = event.extendedProps.responsavelSala != undefined ? event.extendedProps.responsavelSala : "";
 
     cargo.innerText             = event.extendedProps.usuario.cargo;
     area.innerText              = event.extendedProps.usuario.area;
@@ -98,6 +95,16 @@ function showEvent(arg) {
         situacao.innerText = "Autorizado";
         divSituacao.setAttribute('style', 'background-color: #99ff66');
 
+        let divResponsavel = document.createElement('b');
+        divResponsavel.innerText = "Responsavel";
+        document.getElementById('show-content-right').appendChild(divResponsavel);
+
+
+        let paragraphResponsavel = document.createElement('p');
+        paragraphResponsavel.setAttribute('class', 'lead');
+        paragraphResponsavel.innerText = getUsuario().nome;
+        divResponsavel.appendChild(paragraphResponsavel);
+
         hideButtons();
     } 
     else if (event.extendedProps.allow == "Rejeitado") {
@@ -112,6 +119,16 @@ function showEvent(arg) {
         divP.setAttribute('class', 'lead');
         divP.innerText = event.extendedProps.motivoRejeicao;
         divRejeicao.appendChild(divP);
+
+        let divResponsavel = document.createElement('b');
+        divResponsavel.innerText = "Responsavel";
+        document.getElementById('show-content-right').appendChild(divResponsavel);
+
+
+        let paragraphResponsavel = document.createElement('p');
+        paragraphResponsavel.setAttribute('class', 'lead');
+        paragraphResponsavel.innerText = getUsuario().nome;
+        divResponsavel.appendChild(paragraphResponsavel);
 
         hideButtons();
     }

@@ -21,7 +21,7 @@
 }
 
 #footer-create {
-    margin-top: 430px;
+    margin-top: 400px;
 }
 
 /* CSS para o modal de mostrar evento */
@@ -36,7 +36,7 @@
 }
 
 #footer-show {
-    margin-top: 400px;
+    margin-top: 450px;
 }
 
 #delete-event-img {
@@ -58,8 +58,3 @@
     margin-top: 400px;
 }
 
-#settings {
-    position: relative;
-    right: 25px;
-    float: right;
-}

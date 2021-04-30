@@ -7,13 +7,15 @@ function createEvent(calendar, date) {
     let isCoffeeBreak       = $("#create-cofee-break").val();
     let horaInicio          = $("#create-hora-inicio").val();
     let horaFim             = $("#create-hora-fim").val();
-    let responsavel         = $("#create-responsavel-sala").val();
+    let qtdPessoas          = $("#create-qtd-pessoas").val()
     let usuarioLogado       = getUsuarioLogado();
+
+    
     
     let dateStart = new Date(dataEvento + "T" + horaInicio);    
     
     
-    let tempoEstimado = calculaTempoEstimado(horaInicio, horaFim);
+    let tempoEstimado = calculaEstimativaTempo(horaInicio, horaFim);
     if (tempoEstimado == false) {
         alert("Horas inseridas inválidas");
         return false;
@@ -36,7 +38,7 @@ function createEvent(calendar, date) {
             salaSolicitada: salaSolicitada,
             videoConferencia: isVideoConferencia,
             coffeeBreak: isCoffeeBreak,
-            responsavelSala: responsavel,
+            qtdPessoas: qtdPessoas,
             horaInicio: horaInicio,
             horaFim: horaFim,
             dataEvento: dataEvento,
@@ -64,8 +66,8 @@ function showEvent(arg) {
     var tempoEstimado       = document.getElementById('show-tempo-estimado');
     var coffeeBreak         = document.getElementById('show-coffee-break');
     var videoConferencia    = document.getElementById('show-video-conferencia');
-    var responsavelSala     = document.getElementById('show-responsavel-sala');
     var dataCriacaoEvento   = document.getElementById('show-data-criacao');
+    var qtdPessoas          = document.getElementById('show-qtd-pessoas');
 
     var divSituacao = document.getElementById('situacao-color');
     
@@ -79,7 +81,7 @@ function showEvent(arg) {
     tempoEstimado.innerText     = event.extendedProps.tempoEstimado != undefined ? event.extendedProps.tempoEstimado : "";
     coffeeBreak.innerText       = event.extendedProps.coffeeBreak != undefined ? event.extendedProps.coffeeBreak : "";
     videoConferencia.innerText  = event.extendedProps.videoConferencia != undefined ? event.extendedProps.videoConferencia : "";
-    responsavelSala.innerText   = event.extendedProps.responsavelSala != undefined ? event.extendedProps.responsavelSala : "";
+    qtdPessoas.innerText        = event.extendedProps.qtdPessoas + " pessoas"
 
     let dataCriacao = new Date(event.extendedProps.dataCriacao)
     dataCriacaoEvento.innerText += dataCriacao.getDate() + "/" + (dataCriacao.getMonth() + 1) + "/" + dataCriacao.getFullYear();
@@ -122,7 +124,6 @@ function showEditModal(calendar, arg) {
         $("#update-cofee-break").val(isCoffeeBreak);
         $("#update-hora-inicio").val(horaInicio);
         $("#update-hora-fim").val(horaFim);
-        $("#update-responsavel-sala").val(responsavel);
         $("#update-solicitante-sala").val(solicitanteSala);
     
         $("#modal-update-event").modal('show');
@@ -136,8 +137,6 @@ function showEditModal(calendar, arg) {
 }
 
 function editarEvento(calendar, arg) {
-    let newEvent;
-
     let nomeForm            = $("#update-titulo").val();
     let descricaoForm       = $("#update-descricao").val();
     let dataEvento          = $("#update-data-evento").val();
@@ -165,32 +164,6 @@ function editarEvento(calendar, arg) {
     arg.event.setExtendedProp('tempoEstimado', tempoEstimadoForm);
     arg.event.setExtendedProp('solicitanteSala', solicitante);
     arg.event.setExtendedProp('coffeeBreak', isCoffeeBreak);
-
-
-    // newEvent = {
-    //     id: 4,
-    //     title: "-" + nomeForm,
-    //     start: dateStart,
-    //     backgroundColor: 'yellow',
-    //     displayEventTime: true,
-    //     allday: false,
-    //     extendedProps: {
-    //         allow: 'Em espera',
-    //         descricao: descricaoForm,
-    //         salaSolicitada: salaSolicitada,
-    //         videoConferencia: isVideoConferencia,
-    //         coffeeBreak: isCoffeeBreak,
-    //         responsavelSala: responsavel,
-    //         horaInicio: horaInicio,
-    //         horaFim: horaFim,
-    //         dataEvento: dataEvento,
-    //         dateStart: dateStart,
-    //         tempoEstimado: tempoEstimadoForm,
-    //         solicitanteSala: solicitante
-    //     }
-    // };
-
-    // calendar.addEvent(newEvent);
 }
 
 function getUsuarioLogado() {
@@ -202,8 +175,7 @@ function getUsuarioLogado() {
     }
 }
 
-function calculaTempoEstimado(horaInicio, horaFim) {
-
+function calculaEstimativaTempo(horaInicio, horaFim) {
     var horaInicioInt, minutoInicioInt, horaFimInt, minutoFimInt,
     horaInicioMin, horaFimMin, tempoEstimado;
     horaInicioInt = parseInt(horaInicio.substr(0, 2));
@@ -227,7 +199,7 @@ function calculaTempoEstimado(horaInicio, horaFim) {
     let hora = parseInt(tempoEstimado[0]);
     let minuto = "0." + tempoEstimado[1];
 
-    minuto = parseFloat(minuto) * 60;
+    minuto = Math.round(parseFloat(minuto) * 60);
 
     if (hora == 0) {
         return minuto + ' minutos';
