@@ -1,0 +1,65 @@
+.modal-body {
+    font-size: 10pt;
+}
+
+.modal-header {
+    font-size: 20pt;
+}
+
+.column {
+    width: 45%;
+}
+
+/* Css para o Modal de criar evento */
+
+#create-content-left {
+    float:left;
+}
+
+#create-content-right {
+    float: right;
+}
+
+#footer-create {
+    margin-top: 430px;
+}
+
+/* CSS para o modal de mostrar evento */
+
+
+#show-content-right {
+    float: right;
+}
+
+#show-content-left {
+    float: left;
+}
+
+#footer-show {
+    margin-top: 400px;
+}
+
+#delete-event-img {
+    float:left;
+    width: 30px;
+}
+
+/* CSS para o modal de update */
+
+#update-content-left {
+    float: left;
+}
+
+#update-content-right {
+    float: right;
+}
+
+#footer-update {
+    margin-top: 400px;
+}
+
+#settings {
+    position: relative;
+    right: 25px;
+    float: right;
+}

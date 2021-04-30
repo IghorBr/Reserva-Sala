@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+
+    
+    <script src='./scripts/main.js'></script>
+    <script src='./scripts/calendar.js'></script>
+    <script src='./scripts/database.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link href='./styles/main.css' rel='stylesheet' />
+    <link href='./styles/estilo.css' rel='stylesheet' />
+    <title>Calendario Administrativo</title>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var date = new Date();
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        headerToolbar: {
+            left: 'prev,next today addEventButton',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+        },
+        locale: 'pt-br',
+        aspectRatio: 1.2,
+        height: 650,
+        customButtons: {
+            addEventButton: {
+                text: 'Adicionar Evento',
+                click: function() {
+                    $("#modal-create-event").modal('show');
+                    $("#button-form").on('click', function() {
+
+                        createEvent(calendar, date);
+                    });
+                }
+            }
+        },
+        initialDate: date,
+        navLinks: true, // can click day/week names to navigate views
+        selectable: true,
+        firstDay: 1,
+        selectMirror: true,
+        eventClick: function(arg) {
+            showEvent(arg);
+            
+            $("#modal-show-event").modal('show');
+
+            //Permitir Evento
+            $("#button-accept").on('click', function() {
+                acceptEvent(calendar, arg);
+            });
+
+            //Rejeitar Evento
+            $("#button-reject").on('click', function() {
+                rejectEvent(calendar, arg);
+            })        
+        },
+        editable: true,
+        dayMaxEvents: true, // allow "more" link when too many events
+        events: [
+            getEvent(0),
+            getEvent(1)
+        ],
+        eventTimeFormat: {
+            hour: '2-digit',
+            minute: '2-digit',
+            meridiem: false
+        }
+    });
+
+    calendar.render();
+  });
+
+</script>
+<script src="./scripts/changeLanguage.js"></script>
+<style>
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+</style>
+</head>
+<body>
+
+    <div id='calendar'></div>
+
+    <!-- Modal para cadastrar novo Evento -->
+    <div class="modal fade" id="modal-create-event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <h2 class="modal-title" id="modal-header-create">Criar Evento</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id='modal-body-create'>
+                    <form>
+                        <div id='create-content-left' class='column'>
+                            <div class='form-group'>
+                                <label for='titulo'>Título:</label>
+                                <input id="create-titulo" class='form-control' type='text' placeholder="Nome" required autofocus>
+                            </div>
+        
+                            <div class='form-group'>
+                                <label for='descricao'>Descrição Atividade:</label>
+                                <input id='create-descricao' class='form-control' type='text'>
+                            </div>
+    
+                            <div class='form-group'>
+                                <label for='dia-evento'>Data Evento:</label>
+                                <input id='create-data-evento' class='form-control' type='date'></textarea>
+                            </div>
+        
+                            <div class=form-group>
+                                <label for='sala-solicitada'>Sala Solicitada</label>
+                                <select id='create-sala-solicitada' class='form-control' required>
+                                    <option val='0'>&nbsp</option>
+                                    <option val='SALA 1'>SALA 1</option>
+                                    <option val='SALA 2'>SALA 2</option>
+                                    <option val='SALA 3'>SALA 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div id='create-content-right' class='column'>
+                            <div class='form-group'>
+                                <label for='video-conferencia'>Vídeo Conferencia?</label>
+                                <select id='create-video-conferencia' class='form-control' required>
+                                    <option val='Sim'>Sim</option>
+                                    <option val='Não' selected='True'>Não</option>
+                                </select>
+                            </div>
+        
+                            <div class='form-group'>
+                                <label for='coffe-break'>Coffee Break?</label>
+                                <select id='create-cofee-break' class='form-control' required>
+                                    <option val='Sim'>Sim</option>
+                                    <option val='Não' selected="True">Não</option>
+                                </select>
+                            </div>
+        
+                            <div class='form-group'>
+                                <label for='hora-inicio'>Hora Prevista de Início</label>
+                                <input id='create-hora-inicio' class='form-control' type="time" required>
+                            </div>
+        
+                            <div class='form-group'>
+                                <label for='hora-fim'>Hora Prevista de Fim</label>
+                                <input id='create-hora-fim' class='form-control' type='time' required>
+                            </div>
+        
+                            <div class='form-group'>
+                                <label for='resposavel-sala'>Responsável pela Sala</label>
+                                <select id='create-responsavel-sala' class='form-control' required>
+                                    <option val='0'>&nbsp;</option>
+                                    <option val='Responsavel 1'>Responsavel 1</option>
+                                    <option val='Responsavel 2'>Responsavel 2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" id='footer-create'>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" type='submit' id='button-form'>Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para ver o Evento -->
+    <div class="modal fade" id="modal-show-event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modal-show-title">Evento</h2>
+                    <h4 class='modal-title' id=show-data-criacao></p></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                </div>
+
+                <div class="modal-body">
+                    <div id='show-content-left' class='column'>
+                        <b>Titulo Evento:<p id='show-titulo' class='lead'></p></b>
+                        
+                        <b>Descricao Evento:<p id='show-descricao' class='lead'></p></b>
+                    
+                        <b>Data Evento:<p id='show-data' class='lead'></p></b>
+                        
+                        <b>Tempo Estimado (Horas):<p id='show-tempo-estimado' class='lead'></p></b>
+                        
+                        <div id='situacao-color'>
+                            <b>Situacao Evento:<p id='show-situacao' class='lead'></p></b>
+                        </div>
+
+                        <b>Solicitante da Sala:<p id='show-solicitante-sala' class='lead'></p></b>
+                        
+                        <b>Cargo:<p id='show-cargo-solicitante' class='lead'></p></b>
+                    </div>
+                    
+                    <div id='show-content-right' class=column>
+                        <b>Sala Evento:<p id='show-sala-solicitada' class='lead'></p></b>
+                        
+                        <b>Hora Início Evento:<p id='show-hora-inicio' class='lead'></p></b>
+
+                        <b>Hora Fim Evento:<p id='show-hora-fim' class='lead'></p></b>
+
+                        <b></b>Coffee Break:<p id='show-coffee-break' class='lead'></p></b>
+                        
+                        <b>Vídeo Conferência:<p id='show-video-conferencia' class='lead'></p></b>
+                        
+                        <b>Responsável pela Sala:<p id='show-responsavel-sala' class='lead'></p></b>
+                        
+                        <b>Área:<p id='show-area-solicitante' class='lead'></p></b>
+                    </div>
+                </div>
+                
+                <div class="modal-footer" id=footer-show>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" id='button-reject'>Rejeitar</button>
+                    <button type="button" class="btn btn-primary" type='submit' id='button-accept'>Autorizar</button>
+                    <!-- <img id='delete-event-img' src='./images/x-circle.svg' class='img-thumbnail' > -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para aceitar o evento -->
+    <div class="modal fade" id="modal-accept-event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-accept-title">Aceitar evento</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert">
+                        <h5>
+                            Deseja permitir o evento?<br>
+                        </h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-primary" type='submit' id='button-accept-evento'>Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para rejeitar o evento -->
+    <div class="modal fade" id="modal-reject-event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-reject-title">Rejeitar evento</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning" role="alert">
+                        <h5>
+                            Deseja rejeitar o evento?<br>
+                        </h5>
+                        <form>
+                            <div>
+                                <p>Motivo da Rejeição:</p>
+                                <select id=select-motivo-rejeicao>
+                                    <option val=''></option>
+                                    <option val='Motivo 1'>Motivo 1</option>
+                                    <option val='Motivo 2'>Motivo 2</option>
+                                    <option val='Motivo 2'>Motivo 2</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-primary" type='submit' id='button-reject-evento'>Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para apagar o Evento 
+        <div class="modal fade" id="modal-delete-event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-delete-title">Apagar evento</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger" role="alert">
+                            <h5>
+                                Deseja mesmo apagar o evento?<br>
+                                Essa ação não pode ser desfeita.
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                        <button type="button" class="btn btn-primary" type='submit' id='button-delete-evento'>Sim</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    -->
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
