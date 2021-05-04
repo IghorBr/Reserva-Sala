@@ -171,7 +171,7 @@ function getUsuarioLogado() {
         nome: "Ighor Brito",
         cargo: 'Estagiário',
         area: 'SER 2',
-        perfil: "Usuario"
+        perfil: "Solicitante"
     }
 }
 

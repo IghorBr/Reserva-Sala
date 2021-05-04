@@ -1,0 +1,25 @@
+#logo {
+    width: 20%;
+}
+
+#panel-pesquisa {
+    width: auto;
+    margin: 20px;
+    margin-top: 75px;
+}
+
+#search-button {
+    position: relative;
+    float: right;
+    margin: 1rem 2rem;
+}
+
+#list-result-search {
+    width: auto;
+    margin: 20px; 
+}
+
+#delete-event-img {
+    position: relative;
+    float: left;
+}

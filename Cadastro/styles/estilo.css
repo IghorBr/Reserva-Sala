@@ -55,15 +55,27 @@ body {
     transition: all .1s ease-in-out; 
 }
 
+.column {
+    width: 45%;
+}
+
+#content-left {
+    float:left;
+}
+
+#content-right {
+    float: right;
+}
+
 #img-reservar {
     width: 35%;
     position: relative;
     top: -240px;
-    left: 160px;
+    left: 250px;
 }
 
 #panel-cadastro {
-    width: 300px;
+    width: 500px;
     position: relative;
     top: 90px;
     right: 275px;
