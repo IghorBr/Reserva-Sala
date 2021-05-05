@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt=BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +21,7 @@
             <h4>Pesquisar Usuário</h4>
         </div>
 
-        <div class='panel-body row'>
+         <div class='panel-body row'>
             <form>
                 <div id='div-nome-search' class="form-group col-md-3">
                     <label for='nome'>Nome</label>
@@ -58,13 +58,20 @@
                 </div>
 
                 <div>
-                    <button class='btn btn-primary' id='search-button' type="submit" >Pesquisar</button>
+                    <input type='button' value='Pesquisar' class='btn btn-primary' id='search-button' onclick="search()">
                 </div>
-            </form>
+            </form> 
         </div>
     </div>
     
-    <div id='list-result-search' class="list-group"></div>
+    <div class='panel panel-default d-flex justify-content-center' id=panel-result>
+        <div class=panel-heading>
+            <h4>Resultados</h4>
+        </div>
+        <div id='list-result-search' class="list-group">
+        
+        </div>
+    </div>
     
     <div class="modal fade" id="modal-editar-usuario" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">

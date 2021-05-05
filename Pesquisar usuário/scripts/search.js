@@ -1,4 +1,8 @@
-$(function() {
+$(document).ready(function() {
+    $("#panel-result").hide();
+});
+
+function search() {
 
     function getUsers(valor, searchAll) {
         var users = [
@@ -90,26 +94,24 @@ $(function() {
         return searchedUsers;
     }
 
+    let searchAll = false;
+    
+    if ($("#search-perfil").val() == "") {
+        searchAll = true;
+    }
 
-    $("#search-button").on('click', function() {
-        let searchAll = false;
-        
-        if ($("#search-perfil").val() == "") {
-            searchAll = true;
-        }
+    $("#panel-result").show();
 
-        var users = getUsers($("#search-perfil").val(), searchAll);
+    var users = getUsers($("#search-perfil").val(), searchAll);
 
-        users.forEach(user => {
-            let btn = document.createElement('button');
-            btn.setAttribute('type', 'button');
-            btn.setAttribute('class', 'list-group-item');
-            btn.setAttribute('onclick', 'mostrarDados("'+ user.nome + '","' + user.cargo + '","' + user.perfil + '","' + user.area + '")');
-            btn.innerText = user.nome;
+    users.forEach(user => {
+        let btn = document.createElement('button');
+        btn.setAttribute('type', 'button');
+        btn.setAttribute('class', 'list-group-item');
+        btn.setAttribute('onclick', 'mostrarDados("'+ user.nome + '","' + user.cargo + '","' + user.perfil + '","' + user.area + '")');
+        btn.innerText = user.nome;
 
-            document.getElementById('list-result-search').appendChild(btn);
-        });
+        document.getElementById('list-result-search').appendChild(btn);
     });
 
-
-});
+};
