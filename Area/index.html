@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./styles/estilo.css">
+    <title>Area</title>
+</head>
+<body>
+    
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" tabindex="-1" href="#">
+          <img id='logo' src="./images/reservasala.png" alt="">
+        </a>
+
+        <button id='adicionar-area' class="btn btn-default" href='#'>
+            <span class='glyphicon glyphicon-plus'></span>
+        </button>
+    </nav>
+
+    <div class='panel panel-primary d-flex justify-content-center' id=panel-pesquisa>
+        <div class=panel-heading>
+            <h4>Pesquisar Area</h4>
+        </div>
+
+         <div class='panel-body row'>
+            <form>
+                <div id='div-nome-search' class="form-group col-md-6">
+                    <label for='nome'>Nome</label>
+                    <input type='text' id=search-nome class=form-control> 
+                </div>
+
+                <div>
+                    <input type='button' value='Pesquisar' class='btn btn-primary' id='search-button' onclick="search()">
+                </div>
+            </form> 
+        </div>
+    </div>
+
+    <div class='panel panel-default d-flex justify-content-center' id=panel-result>
+        <div class=panel-heading>
+            <h4>Resultados</h4>
+        </div>
+        <div id='list-result-search' class="list-group">
+        
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-editar-area" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id='modal-header-editar-area'>
+                    <h2 class="modal-title" id="modal-title-editar">Editar Area</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>  
+                </div>
+                
+                <div class="modal-body">
+                    
+                    <div class='panel-body row'>
+                        <form>
+                            <div id='div-nome-edit' class="form-group col-md-6">
+                                <h5><b>Nome:</b></h5>
+                                <p id='edit-nome'></p>
+                            </div>
+            
+                            <div id='div-area-edit' class="form-group col-md-6">
+                                <label for='Area'>Descrição:</label>
+                                <textarea class='form-control' id=edit-descricao></textarea>
+                            </div>
+            
+                            
+                        </form>
+                    </div>
+                    
+                </div>
+
+                <div class="modal-footer" id='footer-show'>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id='button-editar-area'>Salvar</button>
+                    <img id='delete-event-img' src='./images/x-circle.svg' class='img-thumbnail' >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-delete-area" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-delete-area">Apagar área</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert">
+                        <h5>
+                            Deseja mesmo apagar o Area?<br>
+                            Essa ação não pode ser desfeita.
+                        </h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-primary" type='submit' id='button-delete-area'>Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-create-area" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" id='modal-header-create-area'>
+                    <h2 class="modal-title" id="modal-title-editar">Criar Area</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>  
+                </div>
+                
+                <div class="modal-body">
+                    
+                    <div class='panel-body row'>
+                        <form>
+                            <div id='div-nome-create' class="form-group col-md-6">
+                                <label for='create-area-nome'>Nome:</label>
+                                <input class='form-control' id='create-Area-nome' place>
+                            </div>
+            
+                            <div id='div-descricao-create' class="form-group col-md-6">
+                                <label for='create-descricao-area'>Descrição:</label>
+                                <textarea class='form-control' id=create-descricao-area></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+
+                <div class="modal-footer" id='footer-show'>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id='button-create-area'>Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='./scripts/area.js'></script>
+    <script src='./scripts/editArea.js'></script>
+    <script>
+        function mostrarDados(nome, descricao) {
+            edit(nome, descricao);
+        }
+    </script>
+</body>
+</html>

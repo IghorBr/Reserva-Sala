@@ -1,0 +1,32 @@
+#logo {
+    width: 20%;
+}
+
+#adicionar-sala {
+    position: relative;
+    float: right;
+    margin: 4rem 4rem 0 0;
+    color: black;
+}
+
+#panel-pesquisa {
+    width: auto;
+    margin: 20px;
+    margin-top: 75px;
+}
+
+#search-button {
+    position: relative;
+    float: right;
+    margin: 1rem 2rem;
+}
+
+#panel-result {
+    width: auto;
+    margin: 20px; 
+}
+
+#delete-event-img {
+    position: relative;
+    float: left;
+}

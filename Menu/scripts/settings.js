@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $(document).ready(function() {
     function getUser(posicao) {
         var users = [
@@ -27,7 +26,6 @@ $(document).ready(function() {
 
     let user = getUser(0);
 
-    console.log(user);
     if(user.perfil == "solicitante") {
         $("#analisar-btn").hide();
     }
@@ -62,7 +60,7 @@ $(function() {
         return users[posicao];
     }
 
-    let user = getUser(1);
+    let user = getUser(0);
 
 
     $("#settings").on('click', function(e) {
@@ -70,22 +68,11 @@ $(function() {
         $("#wrapper").toggleClass("toggled");    
     });
 
-    $("#editar-usuario-link").on('click', function() {
-        if (user.perfil == 'admin') {
-            alert('Foi para a tela de pesquisa')
-        } else {
-            alert('Foi para a tela de cadastro');
-        }
-    })
-
-
-
+    // $("#editar-usuario-link").on('click', function() {
+    //     if (user.perfil == 'admin') {
+    //         alert('Foi para a tela de pesquisa')
+    //     } else {
+    //         alert('Foi para a tela de cadastro');
+    //     }
+    // })
 });
-
-=======
-$(function() {
-    $("#settings").on('click', function() {
-        alert("");
-    });
-});
->>>>>>> 412835693a0a55c32bc54d85a4bfc049f991809a
