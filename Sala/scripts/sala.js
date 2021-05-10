@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $("#panel-result").hide();
+    $("#div-cargos-sala").hide();
 });
 
 
@@ -76,4 +77,15 @@ $(function() {
             $("modal-create-sala").modal('hide');
         })
     }) 
+})
+
+$(function() {
+    $("#restrito-sala-sim").on('click', function() {
+        $("#div-cargos-sala").show();
+    })
+
+    $("#restrito-sala-nao").on('click', function() {
+        $("#div-cargos-sala").hide();
+    })
+    
 })

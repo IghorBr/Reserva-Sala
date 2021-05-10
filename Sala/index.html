@@ -127,15 +127,34 @@
                     
                     <div class='panel-body row'>
                         <form>
-                            <div id='div-nome-create' class="form-group col-md-6">
+                            <div id='div-nome-create' class="form-group col-md-3">
                                 <label for='create-sala-nome'>Nome:</label>
                                 <input class='form-control' id='create-sala-nome' place>
                             </div>
             
-                            <div id='div-descricao-create' class="form-group col-md-6">
+                            <div id='div-descricao-create' class="form-group col-md-3">
                                 <label for='create-descricao-sala'>Descrição:</label>
                                 <textarea class='form-control' id=create-descricao-sala></textarea>
                             </div>
+
+                            <div id='div-restrito-sala' class='from-group col-md-3'>
+                                <label>Restrito:</label><br>
+                                <input type="radio" id="restrito-sala-sim" name="restrito" value="1">
+                                <label for="create-restrito-sala">SIM</label><br>
+                                <input type="radio" id="restrito-sala-nao" name="restrito" value="0" checked>
+                                <label for="female">NÃO</label>
+                            </div>
+
+                            <div id='div-cargos-sala' class='from-group col-md-3'>
+                                <label>Cargos:</label><br>
+                                <input type="checkbox" id="cargo1" name="cargo1" value="Cargo1">
+                                <label for="cargo1">Cargo 1</label><br>
+                                <input type="checkbox" id="two" name="cargo2" value="Cargo 2">
+                                <label for="cargo2">Cargo 2</label><br>
+                                <input type="checkbox" id="three" name="cargo3" value="Cargo 3">
+                                <label for="cargo3">Cargo 3</label>
+                            </div>
+
                         </form>
                     </div>
                     

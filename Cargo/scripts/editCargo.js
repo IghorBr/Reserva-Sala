@@ -1,9 +1,8 @@
 function edit(nome, descricao) {
     $("#modal-editar-cargo").modal('show');
 
-    document.getElementById('edit-nome').innerText = nome;
+    $("#edit-cargo-nome").val(nome);
     document.getElementById('edit-descricao').innerText = descricao;
-    $("#edit-descricao").val(descricao);
 
     $("#button-editar-cargo").on('click', function() {
         alert("Usuário alterado com sucesso");
