@@ -35,7 +35,33 @@
                 </form>
                 
                 <div class='criar-cadastro'>
-                    <a href='#'>Não tenho cadastro</a>
+                    <a id='sem-cadastro' href='#'>Não tenho cadastro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-msg-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-msg-login-title">Não tenho cadastro</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert">
+                        <h4>
+                            Caso não tenha cadastro, por favor, entre em contato com o RH.<br>
+                            Email: <i>rh@ecosistemas.com.br</i>
+                        </h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-primary" type='submit' id='button-delete-sala'>Sim</button>
                 </div>
             </div>
         </div>
@@ -44,6 +70,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="scripts/cadastro.js"></script>
 </body>
 
 </html>

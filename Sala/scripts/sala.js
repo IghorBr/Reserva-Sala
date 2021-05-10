@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("#panel-result").hide();
-    $("#div-cargos-sala").hide();
+    $("#div-cargos-create").hide();
 });
 
 
@@ -12,23 +12,32 @@ function search() {
         var users = [
             {
                 nome: 'Inconfidencia',
-                descricao: '3 andar'
+                descricao: '3 andar',
+                restrito: '1',
+                cargos: [
+                    1,
+                    2
+                ]
             },
             {
                 nome: 'Ouro Preto',
-                descricao: '3 andar'
+                descricao: '3 andar',
+                restrito: '0'
             },
             {
                 nome: 'Tiradentes',
-                descricao: '3 andar'
+                descricao: '3 andar',
+                restrito: '0'
             },
             {
                 nome: 'Vila Rica',
-                descricao: '3 andar'
+                descricao: '3 andar',
+                restrito: '0'
             },
             {
                 nome: 'Sala da Diretoria',
-                descricao: '9 andar'
+                descricao: '9 andar',
+                restrito: '0'
             }
         ];
 
@@ -61,7 +70,7 @@ function search() {
         let btn = document.createElement('button');
         btn.setAttribute('type', 'button');
         btn.setAttribute('class', 'list-group-item');
-        btn.setAttribute('onclick', 'mostrarDados("'+ user.nome + '","' + user.descricao + '")');
+        btn.setAttribute('onclick', 'mostrarDados("'+ user.nome + '","' + user.descricao + '", "' + user.restrito + '","' + user.cargos +'")');
         btn.innerText = user.nome;
 
         document.getElementById('list-result-search').appendChild(btn);
@@ -80,12 +89,15 @@ $(function() {
 })
 
 $(function() {
-    $("#restrito-sala-sim").on('click', function() {
-        $("#div-cargos-sala").show();
+    $("#restrito-sala-sim-create").on('click', function() {
+        $("#div-cargos-create").show();
     })
 
-    $("#restrito-sala-nao").on('click', function() {
-        $("#div-cargos-sala").hide();
+    $("#restrito-sala-nao-create").on('click', function() {
+        $("#div-cargos-create").hide();
+        $(".cargos-create").each(function() {
+            this.checked = false;
+        }); 
     })
     
-})
+});
