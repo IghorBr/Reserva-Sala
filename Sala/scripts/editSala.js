@@ -15,20 +15,37 @@ function edit(nome, descricao, restrito, cargos) {
                 }
             }
         });
+
+        $(".editar").each(function() {
+            this.setAttribute('class', 'editar from-group col-md-3')
+        });
     }
     else {
         $("#restrito-sala-nao-edit").prop('checked', true);
         $("#div-cargos-edit").hide();
+
+        $(".editar").each(function() {
+            this.setAttribute('class', 'editar from-group col-md-4')
+        })
+
         $(".cargos").each(function() {
             this.checked = false;
         });
     }
 
     $("#restrito-sala-sim-edit").on('click', function() {
+        $(".editar").each(function() {
+            this.setAttribute('class', 'editar from-group col-md-3')
+        })
+
         $("#div-cargos-edit").show();
     })
 
     $("#restrito-sala-nao-edit").on('click', function() {
+        $(".editar").each(function() {
+            this.setAttribute('class', 'editar from-group col-md-4')
+        });
+        
         $("#div-cargos-edit").hide();
 
         $(".cargos").each(function() {

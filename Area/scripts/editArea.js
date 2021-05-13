@@ -5,7 +5,7 @@ function edit(nome, descricao) {
     document.getElementById('edit-descricao').innerText = descricao;
 
     $("#button-editar-area").on('click', function() {
-        alert("Usuário alterado com sucesso");
+        alert("Área alterada com sucesso");
         $("#modal-editar-area").modal('hide');
     });
 
@@ -14,7 +14,7 @@ function edit(nome, descricao) {
         $("#button-delete-area").on('click', function() {
             $("#modal-delete-area").modal('hide');
             $("#modal-editar-area").modal('hide');
-            alert("Usuário deletado");
+            alert("Área apagada");
         })
     });
 }

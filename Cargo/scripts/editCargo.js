@@ -5,7 +5,7 @@ function edit(nome, descricao) {
     document.getElementById('edit-descricao').innerText = descricao;
 
     $("#button-editar-cargo").on('click', function() {
-        alert("Usuário alterado com sucesso");
+        alert("Cargo alterado com sucesso");
         $("#modal-editar-cargo").modal('hide');
     });
 
@@ -14,7 +14,7 @@ function edit(nome, descricao) {
         $("#button-delete-cargo").on('click', function() {
             $("#modal-delete-cargo").modal('hide');
             $("#modal-editar-cargo").modal('hide');
-            alert("Usuário deletado");
+            alert("Cargo deletado");
         })
     });
 }

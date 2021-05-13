@@ -26,7 +26,7 @@ function search() {
                 descricao: '3 andar'
             },
             {
-                nome: 'area da Diretoria',
+                nome: 'Sala da Diretoria',
                 descricao: '9 andar'
             }
         ];
@@ -72,8 +72,18 @@ $(function() {
         $("#modal-create-area").modal('show');
 
         $("#button-create-area").on('click', function() {
-            alert('area criado');
+            alert('Área criada');
             $("modal-create-area").modal('hide');
         })
     }) 
+})
+
+$(function() {
+    $("#logo").on('click', function() {
+        alert("Voltou para a tela inicial");
+    });
+
+    $("#voltar-tela-inicial").on('click', function() {
+        alert("Voltou para a tela inicial");
+    });
 })

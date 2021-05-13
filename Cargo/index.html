@@ -11,15 +11,20 @@
 <body>
     
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" tabindex="-1" href="#">
-          <img id='logo' src="./images/reservasala.png" alt="">
-        </a>
+        <p class="navbar-brand">
+            <a tabindex="-1" href="#">
+                <img id='logo' src="./images/reservasala.png" alt="">
+            </a>
+        </p>
 
-        <button id='adicionar-cargo' class="btn btn-default" href='#'>
-            <span class='glyphicon glyphicon-plus'></span>
+        <button id='voltar-tela-inicial' class="btn btn-default" href='#'>
+            <span class='glyphicon glyphicon-arrow-left'></span>
         </button>
     </nav>
 
+    <button id='adicionar-cargo' class="btn btn-default" href='#'>
+        <span class='glyphicon glyphicon-plus'></span>
+    </button>
     <div class='panel panel-primary d-flex justify-content-center' id=panel-pesquisa>
         <div class=panel-heading>
             <h4>Pesquisar Cargo</h4>
@@ -80,7 +85,7 @@
 
                 <div class="modal-footer" id='footer-show'>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id='button-editar-Cargo'>Salvar</button>
+                    <button type="button" class="btn btn-primary" id='button-editar-cargo'>Salvar</button>
                     <img id='delete-event-img' src='./images/x-circle.svg' class='img-thumbnail' >
                 </div>
             </div>
@@ -116,7 +121,7 @@
     <div class="modal fade" id="modal-create-cargo" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header" id='modal-header-create-Cargo'>
+                <div class="modal-header" id='modal-header-create-cargo'>
                     <h2 class="modal-title" id="modal-title-editar">Criar Cargo</h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -143,7 +148,7 @@
 
                 <div class="modal-footer" id='footer-show'>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id='button-create-Cargo'>Salvar</button>
+                    <button type="button" class="btn btn-primary" id='button-create-cargo'>Salvar</button>
                 </div>
             </div>
         </div>

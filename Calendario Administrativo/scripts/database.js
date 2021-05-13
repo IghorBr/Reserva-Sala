@@ -5,7 +5,7 @@ function getEvent(position){
         {
             id: 1,
             title: "-" + "Tarefa Teste",
-            start: new Date('Wed Apr 30 2021 10:00:00 GMT-0300 (GMT-03:00'),
+            start: new Date('Wed May 30 2021 10:00:00 GMT-0300 (GMT-03:00'),
             backgroundColor: 'yellow',
             displayEventTime: true,
             textColor: 'black',
@@ -20,8 +20,8 @@ function getEvent(position){
                 horaInicio: '10:00',
                 horaFim: '11:30',
                 tempoEstimado: calculaTempoEstimado('10:00', '11:30'),
-                dataEvento: '2021-04-30',
-                dateStart: new Date('Wed Apr 21 2021 10:00:00 GMT-0300 (GMT-03:00'),
+                dataEvento: '2021-05-30',
+                dateStart: new Date('Wed May 21 2021 10:00:00 GMT-0300 (GMT-03:00'),
                 dataCriacao: date,
                 usuario: {
                         nome: 'Ighor Brito',
@@ -34,7 +34,7 @@ function getEvent(position){
         {
             id: 2,
             title: "-" + "Tarefa do outro usuario",
-            start: new Date('Wed Apr 30 2021 10:00:00 GMT-0300 (GMT-03:00'),
+            start: new Date('Wed May 30 2021 10:00:00 GMT-0300 (GMT-03:00'),
             backgroundColor: 'yellow',
             displayEventTime: true,
             textColor: 'black',
@@ -49,8 +49,8 @@ function getEvent(position){
                 horaInicio: '10:00',
                 horaFim: '10:30',
                 tempoEstimado: calculaTempoEstimado('10:00', '10:30'),
-                dataEvento: '2021-04-30',
-                dateStart: new Date('Wed Apr 21 2021 10:00:00 GMT-0300 (GMT-03:00'),
+                dataEvento: '2021-05-30',
+                dateStart: new Date('Wed May 21 2021 10:00:00 GMT-0300 (GMT-03:00'),
                 dataCriacao: date,
                 usuario:  {
                     nome: 'Usuario Usuario',
@@ -97,6 +97,4 @@ function calculaTempoEstimado(horaInicio, horaFim) {
     } else {
         return hora + "h:" + minuto + 'min';
     }
-    
-    
 }

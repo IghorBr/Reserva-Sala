@@ -11,15 +11,20 @@
 <body>
     
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" tabindex="-1" href="#">
-          <img id='logo' src="./images/reservasala.png" alt="">
-        </a>
+        <p class="navbar-brand">
+            <a tabindex="-1" href="#">
+                <img id='logo' src="./images/reservasala.png" alt="">
+            </a>
+        </p>
 
-        <button id='adicionar-sala' class="btn btn-default" href='#'>
-            <span class='glyphicon glyphicon-plus'></span>
+        <button id='voltar-tela-inicial' class="btn btn-default" href='#'>
+            <span class='glyphicon glyphicon-arrow-left'></span>
         </button>
     </nav>
 
+    <button id='adicionar-sala' class="btn btn-default" href='#'>
+        <span class='glyphicon glyphicon-plus'></span>
+    </button>
     <div class='panel panel-primary d-flex justify-content-center' id=panel-pesquisa>
         <div class=panel-heading>
             <h4>Pesquisar Sala</h4>
@@ -62,17 +67,17 @@
                     
                     <div class='panel-body row'>
                         <form>
-                            <div id='div-nome-edit' class="form-group col-md-3">
+                            <div id='div-nome-edit' class="editar form-group col-md-3">
                                 <h5><b>Nome:</b></h5>
                                 <input type='text' id='edit-nome' class='form-control'>
                             </div>
             
-                            <div id='div-cargo-edit' class="form-group col-md-3">
+                            <div id='div-cargo-edit' class="editar form-group col-md-3">
                                 <label for='cargo'>Descrição:</label>
                                 <textarea class='form-control' id=edit-descricao></textarea>
                             </div>
 
-                            <div id='div-restrito-edit' class='from-group col-md-3'>
+                            <div id='div-restrito-edit' class='editar from-group col-md-3'>
                                 <label>Restrito:</label><br>
                                 <input type="radio" id="restrito-sala-sim-edit" name="restrito" value="1">
                                 <label for="restrito-sala-sim-edit">SIM</label><br>
@@ -80,7 +85,7 @@
                                 <label for="restrito-sala-nao-edit">NÃO</label>
                             </div>
 
-                            <div id='div-cargos-edit' class='from-group col-md-3'>
+                            <div id='div-cargos-edit' class='editar from-group col-md-3'>
                                 <label>Cargos:</label><br>
                                 <input type="checkbox" id="cargo1-edit" class='cargos' name="cargo1" value="1">
                                 <label for="cargo1">Cargo 1</label><br>
@@ -145,17 +150,17 @@
                     
                     <div class='panel-body row'>
                         <form>
-                            <div id='div-nome-create' class="form-group col-md-3">
+                            <div id='div-nome-create' class="criar form-group col-md-4">
                                 <label for='create-sala-nome'>Nome:</label>
                                 <input class='form-control' id='create-sala-nome' place>
                             </div>
             
-                            <div id='div-descricao-create' class="form-group col-md-3">
+                            <div id='div-descricao-create' class="criar form-group col-md-4">
                                 <label for='create-descricao-sala'>Descrição:</label>
                                 <textarea class='form-control' id=create-descricao-sala></textarea>
                             </div>
 
-                            <div id='div-restrito-sala-create' class='from-group col-md-3'>
+                            <div id='div-restrito-sala-create' class='criar from-group col-md-4'>
                                 <label>Restrito:</label><br>
                                 <input type="radio" id="restrito-sala-sim-create" name="restrito" value="1">
                                 <label for="restrito-sala-sim">SIM</label><br>
@@ -163,7 +168,7 @@
                                 <label for="restrito-sala-nao">NÃO</label>
                             </div>
 
-                            <div id='div-cargos-create' class='from-group col-md-3'>
+                            <div id='div-cargos-create' class='criar from-group col-md-4'>
                                 <label>Cargos:</label><br>
                                 <input type="checkbox" id="cargo1-edit" class='cargos-create' name="cargo1" value="1">
                                 <label for="cargo1">Cargo 1</label><br>

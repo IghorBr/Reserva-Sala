@@ -90,14 +90,33 @@ $(function() {
 
 $(function() {
     $("#restrito-sala-sim-create").on('click', function() {
+        $(".criar").each(function() {
+            this.setAttribute('class', 'criar form-group col-md-3');
+        });
+
         $("#div-cargos-create").show();
     })
 
     $("#restrito-sala-nao-create").on('click', function() {
+        $(".criar").each(function() {
+            this.setAttribute('class', 'criar form-group col-md-4');
+        });
+
         $("#div-cargos-create").hide();
+
         $(".cargos-create").each(function() {
             this.checked = false;
         }); 
     })
     
 });
+
+$(function() {
+    $("#logo").on('click', function() {
+        alert("Voltou para a tela inicial");
+    });
+
+    $("#voltar-tela-inicial").on('click', function() {
+        alert("Voltou para a tela inicial");
+    });
+})

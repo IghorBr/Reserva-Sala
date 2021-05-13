@@ -5,7 +5,14 @@
 #adicionar-cargo {
     position: relative;
     float: right;
-    margin: 4rem 4rem 0 0;
+    margin: 7rem 4rem 0 0;
+    color: black;
+}
+
+#voltar-tela-inicial {
+    position: relative;
+    float: right;
+    margin: 3rem 4rem 0 0;
     color: black;
 }
 

@@ -26,7 +26,7 @@ function search() {
                 descricao: '3 andar'
             },
             {
-                nome: 'cargo da Diretoria',
+                nome: 'Sala da Diretoria',
                 descricao: '9 andar'
             }
         ];
@@ -74,6 +74,16 @@ $(function() {
         $("#button-create-cargo").on('click', function() {
             alert('Cargo criado');
             $("modal-create-cargo").modal('hide');
-        })
-    }) 
+        });
+    }); 
+});
+
+$(function() {
+    $("#logo").on('click', function() {
+        alert("Voltou para a tela inicial");
+    });
+
+    $("#voltar-tela-inicial").on('click', function() {
+        alert("Voltou para a tela inicial");
+    });
 })
