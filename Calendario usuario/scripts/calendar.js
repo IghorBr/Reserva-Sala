@@ -207,3 +207,29 @@ function calculaEstimativaTempo(horaInicio, horaFim) {
         return hora + "h:" + minuto + 'min';
     }
 }
+
+$(function() {
+    function adicionaZero(numero){
+        if (numero <= 9) 
+            return "0" + numero;
+        else
+            return numero; 
+    }
+
+
+    $("#create-data-evento").change(function() {
+        let hoje = new Date();
+        let dataEvento = $("#create-data-evento").val();
+        dataEvento = dataEvento.split('-');
+        
+        dataEvento = dataEvento.map(function(i) {
+            return parseInt(i);
+        });
+      
+        if (dataEvento[2] < hoje.getDate() && dataEvento[1] <= (hoje.getMonth() + 1) && dataEvento[0] <= hoje.getFullYear()) {
+            window.alert("Data inválida");
+            $("#create-data-evento").val(adicionaZero(hoje.getFullYear()) + "-" + adicionaZero((hoje.getMonth() + 1)) + "-" + adicionaZero(hoje.getDate()));
+        }
+
+    })
+})
