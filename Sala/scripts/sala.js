@@ -13,7 +13,13 @@ function search() {
             {
                 nome: 'Inconfidencia',
                 descricao: '3 andar',
-                restrito: '1',
+                capacidade: 20,
+                recursos: [
+                    1,
+                    2,
+                    3
+                ],
+                restrito: true,
                 cargos: [
                     1,
                     2
@@ -22,22 +28,39 @@ function search() {
             {
                 nome: 'Ouro Preto',
                 descricao: '3 andar',
-                restrito: '0'
+                capacidade: 20,
+                recursos: [
+                    1,
+                ],
+                restrito: false
             },
             {
                 nome: 'Tiradentes',
                 descricao: '3 andar',
-                restrito: '0'
+                capacidade: 20,
+                recursos: [
+                    1,
+                    2,
+                ],
+                restrito: false
             },
             {
                 nome: 'Vila Rica',
                 descricao: '3 andar',
-                restrito: '0'
+                capacidade: 20,
+                recursos: [
+                    
+                ],
+                restrito: false
             },
             {
                 nome: 'Sala da Diretoria',
                 descricao: '9 andar',
-                restrito: '0'
+                capacidade: 25,
+                recursos: [
+                    3
+                ],
+                restrito: false
             }
         ];
 
@@ -70,7 +93,7 @@ function search() {
         let btn = document.createElement('button');
         btn.setAttribute('type', 'button');
         btn.setAttribute('class', 'list-group-item');
-        btn.setAttribute('onclick', 'mostrarDados("'+ user.nome + '","' + user.descricao + '", "' + user.restrito + '","' + user.cargos +'")');
+        btn.setAttribute('onclick', 'mostrarDados("'+ user.nome + '","' + user.descricao + '", "' + user.capacidade + '", "' + user.recursos + '", "' + user.restrito + '","' + user.cargos +'")');
         btn.innerText = user.nome;
 
         document.getElementById('list-result-search').appendChild(btn);
@@ -84,30 +107,22 @@ $(function() {
         $("#button-create-sala").on('click', function() {
             alert('Sala criada');
             $("modal-create-sala").modal('hide');
-        })
-    }) 
-})
+        });
+    });
+});
 
 $(function() {
     $("#restrito-sala-sim-create").on('click', function() {
-        $(".criar").each(function() {
-            this.setAttribute('class', 'criar form-group col-md-3');
-        });
-
         $("#div-cargos-create").show();
-    })
+    });
 
     $("#restrito-sala-nao-create").on('click', function() {
-        $(".criar").each(function() {
-            this.setAttribute('class', 'criar form-group col-md-4');
-        });
-
         $("#div-cargos-create").hide();
 
         $(".cargos-create").each(function() {
             this.checked = false;
         }); 
-    })
+    });
     
 });
 

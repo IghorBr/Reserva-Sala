@@ -1,10 +1,25 @@
-function edit(nome, descricao, restrito, cargos) {
+function edit(nome, descricao, capacidade, recursos, restrito, cargos) {
     $("#modal-editar-sala").modal('show');
 
     $("#edit-nome").val(nome);
     $("#edit-descricao").val(descricao);
+    $("#edit-capacidade").val(capacidade);
+    $('.recursos').each(function() {
+        this.checked = false;
+    });
+
+    if (recursos != "") {
+        recursos = recursos.split(',');
+        $('.recursos').each(function() {
+            for (let i = 0; i < recursos.length; i++) {
+                if (this.value == recursos[i]) {
+                    this.checked = true;
+                }
+            }
+        });
+    }
     
-    if(restrito == '1') {
+    if(restrito == 'true') {
         $("#div-cargos-edit").show();
         $("#restrito-sala-sim-edit").prop('checked', true);
         cargos = cargos.split(',');
@@ -15,37 +30,20 @@ function edit(nome, descricao, restrito, cargos) {
                 }
             }
         });
-
-        $(".editar").each(function() {
-            this.setAttribute('class', 'editar from-group col-md-3')
-        });
     }
     else {
         $("#restrito-sala-nao-edit").prop('checked', true);
         $("#div-cargos-edit").hide();
-
-        $(".editar").each(function() {
-            this.setAttribute('class', 'editar from-group col-md-4')
-        })
-
         $(".cargos").each(function() {
             this.checked = false;
         });
     }
 
     $("#restrito-sala-sim-edit").on('click', function() {
-        $(".editar").each(function() {
-            this.setAttribute('class', 'editar from-group col-md-3')
-        })
-
         $("#div-cargos-edit").show();
     })
 
-    $("#restrito-sala-nao-edit").on('click', function() {
-        $(".editar").each(function() {
-            this.setAttribute('class', 'editar from-group col-md-4')
-        });
-        
+    $("#restrito-sala-nao-edit").on('click', function() {      
         $("#div-cargos-edit").hide();
 
         $(".cargos").each(function() {

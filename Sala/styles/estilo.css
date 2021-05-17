@@ -37,3 +37,7 @@
     position: relative;
     float: left;
 }
+
+.row {
+    margin-top: 10px;
+}
