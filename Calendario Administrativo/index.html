@@ -51,7 +51,11 @@
             //Rejeitar Evento
             $("#button-reject").on('click', function() {
                 rejectEvent(calendar, arg);
-            })        
+            });
+
+            $("#button-cancelar-evento").on('click', function() {
+                cancelEvent(calendar, arg);
+            });
         },
         editable: true,
         dayMaxEvents: true, // allow "more" link when too many events
@@ -70,7 +74,7 @@
   });
 
 </script>
-<script src="./scripts/changeLanguage.js"></script>
+
 <style>
 
   body {
@@ -216,6 +220,7 @@
                 
                 <div class="modal-footer" id=footer-show>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" id="button-cancelar-evento">Cancelar</button>
                     <button type="button" class="btn btn-secondary" id='button-reject'>Rejeitar</button>
                     <button type="button" class="btn btn-primary" type='submit' id='button-accept'>Autorizar</button>
                     <!-- <img id='delete-event-img' src='./images/x-circle.svg' class='img-thumbnail' > -->
@@ -315,12 +320,45 @@
         </div>
     -->
 
+    <div class="modal fade" id="modal-cancel-event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-cancelar-event-title">Cancelar evento</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert">
+                        <h5>
+                            Deseja mesmo cancelar o evento?<br>
+                            Essa ação não pode ser desfeita.
+                        </h5>
+                        <form>
+                            <div class='form-group'>
+                                <p>Motivo da Rejeição:</p>
+                                <textarea id=motivo-cancelamento class='form-control'></textarea>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-primary" type='submit' id='button-cancel-evento'>Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src='./scripts/main.js'></script>
     <script src='./scripts/calendar.js'></script>
     <script src='./scripts/database.js'></script>
+    <script src="./scripts/changeLanguage.js"></script>
 
 </body>
 </html>

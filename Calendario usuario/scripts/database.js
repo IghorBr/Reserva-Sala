@@ -1,11 +1,14 @@
-function getEvent(position){
+function getEvent(){
     var date = new Date();
+    var retorna = false;
+
+    var list;
     
     var eventList = [
         {
             id: 1,
             title: "-" + "Tarefa Teste",
-            start: new Date('Wed Apr 30 2021 10:00:00 GMT-0300 (GMT-03:00'),
+            start: new Date('Wed May 30 2021 10:00:00 GMT-0300 (GMT-03:00)'),
             backgroundColor: 'yellow',
             displayEventTime: true,
             textColor: 'black',
@@ -13,15 +16,15 @@ function getEvent(position){
             extendedProps: {
                 allow: "Aguardando Autorização",
                 descricao: "Tarefa de Teste",
-                salaSolicitada: "SALA 1",
+                salaSolicitada: "Vila Rica (3º andar)",
                 videoConferencia: "Sim",
                 coffeeBreak: "Sim",
                 responsavelSala: "Responsavel 1",
                 horaInicio: '10:00',
                 horaFim: '11:30',
                 tempoEstimado: calculaTempoEstimado('10:00', '11:30'),
-                dataEvento: '2021-04-30',
-                dateStart: new Date('Wed Apr 21 2021 10:00:00 GMT-0300 (GMT-03:00'),
+                dataEvento: '2021-05-30',
+                dateStart: new Date('Wed May 30 2021 10:00:00 GMT-0300 (GMT-03:00)'),
                 dataCriacao: date,
                 usuario: {
                         nome: 'Ighor Brito',
@@ -33,7 +36,7 @@ function getEvent(position){
         {
             id: 2,
             title: "-" + "Tarefa do outro usuario",
-            start: new Date('Wed Apr 30 2021 10:00:00 GMT-0300 (GMT-03:00'),
+            start: new Date('Wed May 30 2021 10:00:00 GMT-0300 (GMT-03:00)'),
             backgroundColor: 'yellow',
             displayEventTime: true,
             textColor: 'black',
@@ -41,15 +44,15 @@ function getEvent(position){
             extendedProps: {
                 allow: "Aguardando Autorização",
                 descricao: "Tarefa de Teste",
-                salaSolicitada: "SALA 1",
+                salaSolicitada: "Inconfidência (3º andar)",
                 videoConferencia: "Sim",
                 coffeeBreak: "Sim",
                 responsavelSala: "Responsavel 1",
                 horaInicio: '10:00',
                 horaFim: '10:30',
                 tempoEstimado: calculaTempoEstimado('10:00', '10:30'),
-                dataEvento: '2021-04-30',
-                dateStart: new Date('Wed Apr 21 2021 10:00:00 GMT-0300 (GMT-03:00'),
+                dataEvento: '2021-05-30',
+                dateStart: new Date('Wed May 30 2021 10:00:00 GMT-0300 (GMT-03:00)'),
                 dataCriacao: date,
                 usuario:  {
                     nome: 'Usuario Usuario',
@@ -60,7 +63,10 @@ function getEvent(position){
         }
     ]
 
-    return eventList[position];
+    if (document.getElementById('filtro-sala').value == '')
+        return eventList;
+
+    return eventList;
 }
 
 function calculaTempoEstimado(horaInicio, horaFim) {
@@ -95,6 +101,4 @@ function calculaTempoEstimado(horaInicio, horaFim) {
     } else {
         return hora + "h:" + minuto + 'min';
     }
-    
-    
 }

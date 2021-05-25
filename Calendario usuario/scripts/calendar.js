@@ -84,7 +84,7 @@ function showEvent(arg) {
     qtdPessoas.innerText        = event.extendedProps.qtdPessoas + " pessoas"
 
     let dataCriacao = new Date(event.extendedProps.dataCriacao)
-    dataCriacaoEvento.innerText += dataCriacao.getDate() + "/" + (dataCriacao.getMonth() + 1) + "/" + dataCriacao.getFullYear();
+    dataCriacaoEvento.innerText = "Criado em: " + dataCriacao.getDate() + "/" + (dataCriacao.getMonth() + 1) + "/" + dataCriacao.getFullYear();
 
     if (event.extendedProps.allow == "Aguardando Autorização") {
         situacao.innerText = "Aguardando Autorização";
@@ -208,6 +208,25 @@ function calculaEstimativaTempo(horaInicio, horaFim) {
     }
 }
 
+function getInfoSala(sala) {
+    if (sala == 'Vila Rica (3º andar)') 
+        return {
+            nome: 'Vila Rica (3º andar)',
+            descricao: 'Sala reservada para reuniões',
+            capacidade: 30,
+            recursos: 'Ar-condicionado'
+        }
+    else if (sala == 'Inconfidência (3º andar)')
+        return {
+            nome: 'Inconfidência (3º andar)',
+            descricao: 'Sala grande reservada para reuniões e treinamentos',
+            capacidade: 50,
+            recursos: 'Ar-condicionado\nProjetor'
+        }
+    else 
+        return null;
+}
+
 $(function() {
     function adicionaZero(numero){
         if (numero <= 9) 
@@ -232,4 +251,67 @@ $(function() {
         }
 
     })
-})
+});
+
+$(function() {
+    $("#info-sala").on('click', () => {
+        $("#modal-info-sala").modal('show');
+
+        info = getInfoSala(document.getElementById("show-sala-solicitada").innerText);
+
+        let nomeSala = document.getElementById('info-nome-sala');
+        let descricaoSala = document.getElementById('info-descricao-sala');
+        let capacidadeSala = document.getElementById('info-capacidade-sala');
+        let recursosSala = document.getElementById('info-recursos-sala');
+
+        nomeSala.innerText = info.nome;
+        descricaoSala.innerText = info.descricao;
+        capacidadeSala.innerText = info.capacidade;
+        recursosSala.innerText = info.recursos;
+    });
+});
+
+$(document).ready(function() {
+    $("#info-sala-filtro").hide();
+});
+
+$(function() {
+    $("#filtro-sala").change(() => {
+        $("#info-sala-filtro").show();
+
+
+        $("#info-sala-filtro").on('click', () => {
+            $("#modal-info-sala").modal('show');
+    
+            info = getInfoSala($("#filtro-sala").val());
+
+            if (info == null) return;
+    
+            let nomeSala = document.getElementById('info-nome-sala');
+            let descricaoSala = document.getElementById('info-descricao-sala');
+            let capacidadeSala = document.getElementById('info-capacidade-sala');
+            let recursosSala = document.getElementById('info-recursos-sala');
+    
+            nomeSala.innerText = info.nome;
+            descricaoSala.innerText = info.descricao;
+            capacidadeSala.innerText = info.capacidade;
+            recursosSala.innerText = info.recursos;
+        });
+
+        if($("#filtro-sala").val() == '') {
+            $("#info-sala-filtro").hide();
+        }
+    });
+});
+
+$(function() {
+    $("#button-cancelar-evento").on('click', () => {
+        $("#modal-cancel-event").modal('show');
+    });
+
+    $("#button-cancel-evento").on('click', () => {
+        alert("Evento cancelado");
+        $("#modal-cancel-event").modal('hide');
+    })
+});
+

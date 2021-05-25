@@ -36,7 +36,7 @@
 }
 
 #footer-show {
-    margin-top: 450px;
+    margin-top: 400px;
 }
 
 #delete-event-img {
@@ -58,3 +58,22 @@
     margin-top: 400px;
 }
 
+#header {
+    width: 30%;
+    position:relative;
+    left: 26.5rem;
+    padding-bottom: 2%;
+}
+
+#info-sala{
+    position:relative;
+    float: right;
+}
+
+#info-sala-filtro {
+    margin-top: 25px;
+}
+
+#content-info-sala {
+    font-size: 13pt;
+}

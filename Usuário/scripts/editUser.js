@@ -1,7 +1,10 @@
-function edit(nome, cargo, perfil, area) {
+function edit(nome, login, email, cargo, perfil, area) {
     $("#modal-editar-usuario").modal('show');
 
     document.getElementById('edit-nome').innerText = nome;
+    document.getElementById('edit-login').innerText = login;
+    document.getElementById('edit-email').innerText = email;
+
     $("#edit-cargo").val(cargo);
     $("#edit-perfil").val(perfil);
     $("#edit-area").val(area);

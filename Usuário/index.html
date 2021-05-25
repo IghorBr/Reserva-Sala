@@ -11,9 +11,16 @@
 <body>
 
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img id='logo' src="./images/reservasala.png" alt="">
-        </a>
+        <p class="navbar-brand">
+            <a tabindex="-1" href="#">
+                <img id='logo' src="./images/reservasala.png" alt="">
+            </a>
+        </p>
+
+
+        <button id='voltar-tela-inicial' class="btn btn-default" href='#'>
+            <span class='glyphicon glyphicon-arrow-left'></span>
+        </button>
     </nav>
 
     <div class='panel panel-primary d-flex justify-content-center' id=panel-pesquisa>
@@ -23,12 +30,22 @@
 
          <div class='panel-body row'>
             <form>
-                <div id='div-nome-search' class="form-group col-md-3">
+                <div id='div-nome-search' class="form-group col-md-4">
                     <label for='nome'>Nome</label>
                     <input type='text' id=search-nome class=form-control> 
                 </div>
 
-                <div id='div-nome-search' class="form-group col-md-3">
+                <div id='div-nome-search' class="form-group col-md-4">
+                    <label for='nome'>Login</label>
+                    <input type='text' id=search-login class=form-control> 
+                </div>
+
+                <div id='div-nome-search' class="form-group col-md-4">
+                    <label for='nome'>Email</label>
+                    <input type='text' id=search-email class=form-control> 
+                </div>
+
+                <div id='div-nome-search' class="form-group col-md-4">
                     <label for='cargo'>Cargo</label>
                     <select class=form-control id=search-cargo>
                         <option val=''></option>
@@ -38,7 +55,7 @@
                     </select>
                 </div>
 
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label for='area'>Área</label>
                     <select class=form-control id=search-area>
                         <option val=''></option>
@@ -47,7 +64,7 @@
                     </select>
                 </div>
 
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label for='perfil'>Perfil:</label>
                     <select class=form-control id=search-perfil>
                         <option val=''></option>
@@ -87,12 +104,22 @@
                     
                     <div class='panel-body row'>
                         <form>
-                            <div id='div-nome-edit' class="form-group col-md-3">
+                            <div id='div-nome-edit' class="form-group col-md-4">
                                 <h5><b>Nome:</b></h5>
                                 <p id='edit-nome'></p>
                             </div>
+
+                            <div id='div-login-edit' class="form-group col-md-4">
+                                <h5><b>Login:</b></h5>
+                                <p id='edit-login'></p>
+                            </div>
+
+                            <div id='div-email-edit' class="form-group col-md-4">
+                                <h5><b>Email:</b></h5>
+                                <p id='edit-email'></p>
+                            </div>
             
-                            <div id='div-cargo-edit' class="form-group col-md-3">
+                            <div id='div-cargo-edit' class="form-group col-md-4">
                                 <label for='cargo'>Cargo</label>
                                 <select class=form-control id=edit-cargo>
                                     <option val=''></option>
@@ -102,7 +129,7 @@
                                 </select>
                             </div>
             
-                            <div id='div-area-edit' class="form-group col-md-3">
+                            <div id='div-area-edit' class="form-group col-md-4">
                                 <label for='area'>Área</label>
                                 <select class=form-control id=edit-area>
                                     <option val=''></option>
@@ -111,7 +138,7 @@
                                 </select>
                             </div>
             
-                            <div id='div-perfil-edit' class="form-group col-md-3">
+                            <div id='div-perfil-edit' class="form-group col-md-4">
                                 <label for='perfil'>Perfil:</label>
                                 <select class=form-control id=edit-perfil>
                                     <option val=''></option>
@@ -128,7 +155,7 @@
                 <div class="modal-footer" id='footer-show'>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     <button type="button" class="btn btn-primary" id='button-editar-usuario'>Salvar</button>
-                    <img id='delete-event-img' src='./images/x-circle.svg' class='img-thumbnail' >
+                    <!-- <img id='delete-event-img' src='./images/x-circle.svg' class='img-thumbnail' > -->
                 </div>
             </div>
         </div>
@@ -169,8 +196,8 @@
     <script src='./scripts/search.js'></script>
     <script src='./scripts/editUser.js'></script>
     <script>
-        function mostrarDados(nome, cargo, perfil, area) {
-            edit(nome, cargo, perfil, area);
+        function mostrarDados(nome, login, email, cargo, perfil, area) {
+            edit(nome, login, email, cargo, perfil, area);
         }
     </script>
 </body>

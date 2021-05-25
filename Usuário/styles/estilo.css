@@ -8,6 +8,12 @@
     margin-top: 75px;
 }
 
+#voltar-tela-inicial {
+    position: relative;
+    float: right;
+    margin: 3rem 4rem 0 0;
+    color: black;
+}
 
 #search-button {
     position: relative;

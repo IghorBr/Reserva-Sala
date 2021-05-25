@@ -132,6 +132,31 @@ function showEvent(arg) {
 
         hideButtons();
     }
+    else if(event.extendedProps.allow == "Cancelado") {
+        situacao.innerText = "Cancelado";
+        divSituacao.setAttribute('style', 'background-color: #ff6666');
+
+        var divRejeicao = document.createElement('b');
+        divRejeicao.innerText = "Motivo Cancelamento:";
+        document.getElementById('show-content-left').appendChild(divRejeicao);
+
+        var divP = document.createElement('p');
+        divP.setAttribute('class', 'lead');
+        divP.innerText = event.extendedProps.motivoRejeicao;
+        divRejeicao.appendChild(divP);
+
+        let divResponsavel = document.createElement('b');
+        divResponsavel.innerText = "Responsavel";
+        document.getElementById('show-content-right').appendChild(divResponsavel);
+
+
+        let paragraphResponsavel = document.createElement('p');
+        paragraphResponsavel.setAttribute('class', 'lead');
+        paragraphResponsavel.innerText = getUsuario().nome;
+        divResponsavel.appendChild(paragraphResponsavel);
+
+        hideButtons();
+    }
 }
 
 function acceptEvent(calendar, arg) {
@@ -178,6 +203,7 @@ function rejectEvent(calendar, arg) {
 function hideButtons() {
     $("#button-reject").hide();
     $("#button-accept").hide();
+    $("#button-cancelar-evento").hide();
 }
 
 function getUsuario() {
@@ -221,4 +247,27 @@ function calculaTempoEstimado(horaInicio, horaFim) {
     } else {
         return hora + "h:" + minuto + 'min';
     }
+}
+
+function cancelEvent(calendar, arg) {
+    $("#modal-cancel-event").modal('show');
+
+    $("#button-cancel-evento").on('click', () => {
+        if ($("#motivo-cancelamento").val() == "") {
+            alert("Preencha o motivo do cancelamento");
+            return false;
+        }
+
+        console.log($("#motivo-cancelamento").val())
+
+        let event = calendar.getEventById(arg.event.id);
+        if (event._def.extendedProps.allow === "Aguardando Autorização")  {
+            event.setExtendedProp('allow', 'Cancelado');
+            event.setExtendedProp('motivoRejeicao', $("#motivo-cancelamento").val());
+            event.setProp('backgroundColor', 'red');
+        }
+        
+        $("#modal-cancel-event").modal('hide');
+        $("#modal-show-event").modal('hide');
+    });
 }

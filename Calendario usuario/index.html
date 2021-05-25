@@ -12,7 +12,12 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     var date = new Date();
+    var filtro = false;
     var calendarEl = document.getElementById('calendar');
+
+    $("#filtro-sala").change(() => {
+        filtro = $("#filtro-sala").val();
+    });
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
         headerToolbar: {
@@ -58,15 +63,19 @@
                     $("#modal-delete-event").modal('hide');
                     $("#modal-show-event").modal('hide');
                 });
-            })
-        
+            });        
         },
         editable: true,
         dayMaxEvents: true, // allow "more" link when too many events
-        events: [
-            getEvent(0),
-            getEvent(1)
-        ],
+        events: getEvent().map(
+            function(evento) {
+                if (!filtro) {
+                    return evento
+                }
+                else if (evento.extendedProps.salaSolicitada == filtro) {
+                    return evento;
+                }
+            }),
         eventTimeFormat: {
             hour: '2-digit',
             minute: '2-digit',
@@ -97,6 +106,25 @@
 </head>
 <body>
     
+    <div id=header class=row>
+        <div class=col-md-8>
+            <label>Filtro de Salas:</label>
+            <select id='filtro-sala' class='form-control'>
+                <option val=''></option>
+                <option val='Inconfidência (3º andar)'>Inconfidência (3º andar)</option>
+                <option val='Ouro Preto (3º andar)'>Ouro Preto (3º andar)</option>
+                <option val='Tiradentes (3º andar)'>Tiradentes (3º andar)</option>
+                <option val='Vila Rica (3º andar)'>Vila Rica (3º andar)</option>
+                <option val='Sala da Diretoria (9º andar)'>Sala da Diretoria (9º andar)</option>
+            </select>
+        </div>
+        <div class=col-md-4>
+            <button id='info-sala-filtro' class="btn btn-secondary">
+                <span class="glyphicon glyphicon-info-sign"/>
+            </button>
+        </div>
+    </div>
+
     <div id='calendar'></div>
 
     <!-- Modal para cadastrar novo Evento -->
@@ -197,7 +225,7 @@
             <div class="modal-content">
                 <div class="modal-header" id='modal-header-show'>
                     <h2 class="modal-title" id="modal-show-title">Evento</h2>
-                    <h4 class='modal-title' id=show-data-criacao>Criado em </p></h4>
+                    <h4 class='modal-title' id=show-data-criacao></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>  
@@ -221,7 +249,14 @@
                     </div>
                     
                     <div id='show-content-right' class=column>
-                        <b>Sala Evento:<p id='show-sala-solicitada' class='lead'></p></b>
+                        <b>
+                            Sala Evento: 
+                            <button id=info-sala class="btn btn-secondary">
+                                <span class="glyphicon glyphicon-info-sign"/>
+                            </button>
+                            <p id='show-sala-solicitada' class='lead'></p> 
+                            
+                        </b>
                         
                         <b>Hora Início Evento:<p id='show-hora-inicio' class='lead'></p></b>
 
@@ -237,8 +272,9 @@
 
                 <div class="modal-footer" id='footer-show'>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-secondary" id="button-cancelar-evento">Cancelar</button>
                     <button type="button" class="btn btn-secondary" id='button-editar-evento'>Editar</button>
-                    <img id='delete-event-img' src='./images/x-circle.svg' class='img-thumbnail' >
+                    <img id='delete-event-img' src='./images/x-circle.svg' class='img-thumbnail'>
                 </div>
             </div>
         </div>
@@ -345,6 +381,62 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
                     <button type="button" class="btn btn-primary" type='submit' id='button-delete-evento'>Sim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar as informações da sala -->
+    <div class="modal fade" id="modal-info-sala" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-info-sala-title">Dados da Sala</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                </div>
+                <div class="modal-body">
+                    <div id=content-info-sala>
+                        <b>Nome:<p id='info-nome-sala' class='lead'></p></b>
+                        
+                        <b>Descricao Sala:<p id='info-descricao-sala' class='lead'></p></b>
+                    
+                        <b>Capacidade:<p id='info-capacidade-sala' class='lead'></p></b>
+                        
+                        <b>Recursos:<p id='info-recursos-sala' class='lead'></p></b>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-cancel-event" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-cancelar-event-title">Cancelar evento</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" role="alert">
+                        <h5>
+                            Deseja mesmo cancelar o evento?<br>
+                            Essa ação não pode ser desfeita.
+                        </h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-primary" type='submit' id='button-cancel-evento'>Sim</button>
                 </div>
             </div>
         </div>
