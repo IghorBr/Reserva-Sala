@@ -15,10 +15,6 @@
     var filtro = false;
     var calendarEl = document.getElementById('calendar');
 
-    $("#filtro-sala").change(() => {
-        filtro = $("#filtro-sala").val();
-    });
-
     var calendar = new FullCalendar.Calendar(calendarEl, {
         headerToolbar: {
             left: 'prev,next today addEventButton',
