@@ -74,6 +74,12 @@
     margin-top: 25px;
 }
 
+#info-sala-selecionada {
+    position: relative;
+    float: right;
+    margin-bottom: 15px;
+}
+
 #content-info-sala {
     font-size: 13pt;
 }

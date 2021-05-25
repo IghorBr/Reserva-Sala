@@ -227,6 +227,22 @@ function getInfoSala(sala) {
         return null;
 }
 
+function InfoSala(info) {
+    $("#modal-info-sala").modal('show');
+
+    let nomeSala = document.getElementById('info-nome-sala');
+    let descricaoSala = document.getElementById('info-descricao-sala');
+    let capacidadeSala = document.getElementById('info-capacidade-sala');
+    let recursosSala = document.getElementById('info-recursos-sala');
+
+    nomeSala.innerText = info.nome;
+    descricaoSala.innerText = info.descricao;
+    capacidadeSala.innerText = info.capacidade;
+    recursosSala.innerText = info.recursos;
+}
+
+
+//Função Responsável por não permitir que a data já tenha passado
 $(function() {
     function adicionaZero(numero){
         if (numero <= 9) 
@@ -250,58 +266,57 @@ $(function() {
             $("#create-data-evento").val(adicionaZero(hoje.getFullYear()) + "-" + adicionaZero((hoje.getMonth() + 1)) + "-" + adicionaZero(hoje.getDate()));
         }
 
-    })
+    });
 });
 
+
+//Função Responsável por mostrar os dados no modal de informação da sala
 $(function() {
     $("#info-sala").on('click', () => {
         $("#modal-info-sala").modal('show');
 
         info = getInfoSala(document.getElementById("show-sala-solicitada").innerText);
 
-        let nomeSala = document.getElementById('info-nome-sala');
-        let descricaoSala = document.getElementById('info-descricao-sala');
-        let capacidadeSala = document.getElementById('info-capacidade-sala');
-        let recursosSala = document.getElementById('info-recursos-sala');
-
-        nomeSala.innerText = info.nome;
-        descricaoSala.innerText = info.descricao;
-        capacidadeSala.innerText = info.capacidade;
-        recursosSala.innerText = info.recursos;
+        InfoSala(info);
     });
 });
 
+//Esconde o botão de informacao da sala caso necessario
 $(document).ready(function() {
     $("#info-sala-filtro").hide();
+    $("#info-sala-selecionada").hide();
 });
 
+//Função para fazer o botão de informacao da sala referente ao filtro sumir aparecer e mostrar seus dados
 $(function() {
     $("#filtro-sala").change(() => {
         $("#info-sala-filtro").show();
 
-
         $("#info-sala-filtro").on('click', () => {
-            $("#modal-info-sala").modal('show');
-    
             info = getInfoSala($("#filtro-sala").val());
-
-            if (info == null) return;
-    
-            let nomeSala = document.getElementById('info-nome-sala');
-            let descricaoSala = document.getElementById('info-descricao-sala');
-            let capacidadeSala = document.getElementById('info-capacidade-sala');
-            let recursosSala = document.getElementById('info-recursos-sala');
-    
-            nomeSala.innerText = info.nome;
-            descricaoSala.innerText = info.descricao;
-            capacidadeSala.innerText = info.capacidade;
-            recursosSala.innerText = info.recursos;
+            InfoSala(info);
         });
 
-        if($("#filtro-sala").val() == '') {
+        if ($("#filtro-sala").val() == '') {
             $("#info-sala-filtro").hide();
         }
-    });
+    });   
+});
+
+//Função para fazer o botão de informacao da sala referente ao filtro sumir aparecer e mostrar seus dados
+$(function() {
+    $("#create-sala-solicitada").change(() => {
+        $("#info-sala-selecionada").show();
+
+        $("#info-sala-selecionada").on('click', () => {
+            info = getInfoSala($("#create-sala-solicitada").val());
+            InfoSala(info);
+        });
+
+        if ($("#create-sala-solicitada").val() == '') {
+            $("#info-sala-selecionada").hide();
+        }
+    });   
 });
 
 $(function() {
