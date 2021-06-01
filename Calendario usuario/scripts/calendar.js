@@ -319,6 +319,7 @@ $(function() {
     });   
 });
 
+//Função para cancelar o evento
 $(function() {
     $("#button-cancelar-evento").on('click', () => {
         $("#modal-cancel-event").modal('show');

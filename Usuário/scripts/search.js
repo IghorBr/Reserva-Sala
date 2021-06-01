@@ -2,15 +2,6 @@ $(document).ready(function() {
     $("#panel-result").hide();
 });
 
-$(function() {
-    $("#logo").on('click', function() {
-        alert("Voltou para a tela inicial");
-    });
-
-    $("#voltar-tela-inicial").on('click', function() {
-        alert("Voltou para a tela inicial");
-    });
-})
 
 function search() {
 
